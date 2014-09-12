@@ -1,0 +1,37 @@
+<style type="text/css">
+	.fractal_contactArea_spaced {
+		margin: 9px;
+	}
+	.fractal_contactArea_textArea, .fractal_contactArea_nameInput {
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 12px;
+		border-radius: 5px;
+	}
+	.fractal_contactArea_textArea {
+		resize: none;
+		width: 100%;
+		height: 200px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 12px;
+		border-radius: 5px;
+		display: block;
+	}
+	.fractal_contactArea_nameInput {
+		width: 42%;
+		height: 23px;
+		border-style: solid;
+		border-width: 1px;
+		border-color: rgb(166, 167, 167);
+		padding-bottom: 5px;
+		padding-left: 10px;
+		padding-right: 10px;
+		padding-top: 5px;
+	}
+</style>
+
+<div ng-controller="ContactAreaCtrl" style="display: inline-block; width: 30%">
+	<input ng-model="contactAreaName" type="text" placeholder="Numele tau" class="fractal_contactArea_nameInput fractal_contactArea_spaced"></input>
+	<input ng-model="contactAreaSubject" type="text" placeholder="Titlu" class="fractal_contactArea_nameInput fractal_contactArea_spaced"></input>
+	<textarea ng-model="contactAreaMessage" class="fractal_contactArea_textArea fractal_contactArea_spaced" placeholder="Scrie-ne !!! Iti vom raspunde numaidecat..."></textarea>
+	<button ng-click="submitMessage()" class="fractal_contactArea_spaced">Trimite</button>
+</div>

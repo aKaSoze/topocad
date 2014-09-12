@@ -26,24 +26,26 @@ public class MailServlet extends HttpServlet {
 		Properties props = new Properties();
 		Session session = Session.getDefaultInstance(props, null);
 
-		String msgBody = "Acest mail a fost trimis prin app engine, imi pare rau ca am uitat sa cobor cu cheia, m-am gandit ca mai bine imi ofer un motiv sa-ti trimit acest mail rezolvand problema trimiteri lui.";
-
 		// Set response content type
 		resp.setContentType("text/html");
 		PrintWriter out = resp.getWriter();
 
 		try {
+			String name = req.getParameter("name");
+			String subject = req.getParameter("subject");
+			String message = req.getParameter("message");
+
 			Message msg = new MimeMessage(session);
-			msg.setFrom(new InternetAddress("mrsoze.ks@gmail.com",
-					"App Engine"));
+			msg.setFrom(new InternetAddress("mrsoze.ks@gmail.com", name));
 			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
 					"corina_geboiu@yahoo.com", "Yo coco"));
 			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
 					"nica_petre_sorin@yahoo.com", "Mr. Soze"));
-			msg.setSubject("Scuze papusa");
-			msg.setText(msgBody);
+			msg.setSubject(name + " - " + subject);
+			msg.setText(message);
 			Transport.send(msg);
-			out.println("<h1>Email Sent Neg</h1>");
+			out.println("<h1>" + name + " - " + subject + "<br>" + message
+					+ "</h1>");
 		} catch (MessagingException e) {
 			out.println("<h1>Email Was Not Sent Neg</h1>");
 			out.println("<h1>" + e.getMessage() + "</h1>");
